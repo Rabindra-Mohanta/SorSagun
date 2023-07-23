@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="gusti_list">
+        <item>Aanjhar</item>
+        <item>Akhariar</item>
+        <item>Asurar</item>
+        <item>Akhuriar</item>
+        <item>Adhachobra</item>
+        <item>Ashipar</item>
+        <item>Udhiar</item>
+        <item>Ukhuriar</item>
+        <item>Kalariar</item>
+        <item>Karkuar</item>
+        <item>Sanchi karkuar</item>
+        <item>Kari karkuar</item>
+        <item>Kadarahar</item>
+        <item>Kalruar</item>
+        <item>Kahanriar</item>
+        <item>Kaduar</item>
+        <item>Kalakata Kaduar</item>
+        <item>Sialkata kaduar</item>
+        <item>Taka kaduar</item>
+        <item>Jhantikata kaduar</item>
+        <item>Bartil kaduar</item>
+        <item>Katuar</item>
+        <item>Kaichiar</item>
+        <item>Kaxhhuar</item>
+        <item>Kadimar</item>
+        <item>Kanthaduba</item>
+        <item>Kanbindha</item>
+        <item>Kansariar</item>
+        <item>Kudiar</item>
+        <item>Kunduariar</item>
+        <item>Kuliar</item>
+        <item>Khenkuar</item>
+        <item>Sanchi Khekuaar</item>
+        <item>Dudhi Khekuaar</item>
+        <item>Bhelu Khekuaar</item>
+        <item>Katiyar</item>
+        <item>Ketiyar</item>
+        <item>Guti Ketiyar</item>
+        <item>Katia Ketiyar</item>
+        <item>Sanchi Ketiyar</item>
+        <item>Jhantikata Ketiyar</item>
+        <item>Pencha Ketiyar</item>
+        <item>Khelrar</item>
+        <item>Kesriar</item>
+        <item>Kencha Kesriaar</item>
+        <item>Gua Kesriaar</item>
+        <item>Pencha Kesriaar</item>
+        <item>Sujhua Kesriaar</item>
+        <item>Khariar</item>
+        <item>Khairuar</item>
+        <item>Khesurar</item>
+        <item>Gasur</item>
+        <item>Godhriar</item>
+        <item> Kalakata Kaduar</item>
+        <item>Gundariar</item>
+        <item>Guliar</item>
+        <item>Ghentiar</item>
+        <item>Gheruar</item>
+        <item>Goduar</item>
+        <item>Ghanguar</item>
+        <item>Ghodiar</item>
+        <item>Chouriar</item>
+        <item>Chiluar</item>
+        <item>Chilbindha</item>
+        <item>Chiluruar</item>
+        <item>Chinbinuar</item>
+        <item>Chilmohar</item>
+        <item>Chutiar</item>
+        <item>Choraruhar</item>
+        <item>Jueiar</item>
+        <item>Jamarar</item>
+        <item>Jungtiar</item>
+        <item>Jhimriar</item>
+        <item>Tudu</item>
+        <item>Danguar</item>
+        <item>Dungariaar</item>
+        <item>Mala Dungariaar</item>
+        <item>Moja Dungariaar</item>
+        <item>Dumarior</item>
+        <item>Tanki pitha Dumarior</item>
+        <item>Ghoda Dumarior</item>
+        <item>Titiar</item>
+        <item>Tunduar</item>
+        <item>Tiduar</item>
+        <item>Bangriar</item>
+        <item>Duruar</item>
+        <item>Naguar</item>
+        <item>Nuakuli</item>
+        <item>Nangtuar</item>
+        <item>Neluar</item>
+        <item>Pankular</item>
+        <item>Pauriar</item>
+        <item>Panuar</item>
+        <item>Punariaar</item>
+        <item>Pata Punariaar</item>
+        <item>Paina Punariaar</item>
+        <item>Anchipa Punariaar</item>
+        <item>Chilbindha Punariaar</item>
+        <item>Aadhachipa Punariaar</item>
+        <item>Chholakata Punariaar</item>
+        <item>Bokasur</item>
+        <item>Bakuar</item>
+        <item>Bangaliar</item>
+        <item>Baghuar</item>
+        <item>Bansuar</item>
+        <item>Bansriar</item>
+        <item>Bansh Bansriar</item>
+        <item>Karil Bansriar</item>
+        <item>Ropa Bansriar</item>
+        <item>Jhapa Bansriar</item>
+        <item>Jhala Bansriar</item>
+        <item>Daliala Bansriar</item>
+        <item>Salsa Bansriar</item>
+        <item>Banduar</item>
+        <item>Bachhuria</item>
+        <item>Banuar</item>
+        <item>Kiya Banuar</item>
+        <item>Goyal Banuar</item>
+        <item>Goda Banuar</item>
+        <item>Jal Banuar</item>
+        <item>Barha Banuar</item>
+        <item>Bagha Banuar</item>
+        <item>Birahal Banuar</item>
+        <item>Bhaluk Banuar</item>
+        <item>Saithi Banuar</item>
+        <item>Sarei Banuar</item>
+        <item>Basigiar</item>
+        <item>Bundiar</item>
+        <item>Bilar</item>
+        <item>Bemuar</item>
+        <item>Behuluar</item>
+        <item>Bhakamar</item>
+        <item>Maguar</item>
+        <item>Mantraar</item>
+        <item>Manuar</item>
+        <item>Murtuar</item>
+        <item>Chhanch murtuar</item>
+        <item>Musuar</item>
+        <item>Raja Mola</item>
+        <item>Rahelear</item>
+        <item>Rimiriar</item>
+        <item>Sanghuar</item>
+        <item>Sikuar</item>
+        <item>Shioriar</item>
+        <item>Sankhuar</item>
+        <item>Shiar</item>
+        <item>Shikar</item>
+        <item>Shingharar</item>
+        <item>Sonariar</item>
+        <item>Hansdah</item>
+        <item>Hansdahar</item>
+        <item>Hindoiar</item>
+        <item>Sanchi Hindoiar</item>
+        <item>Hemriar</item>
+        <item>Hembram</item>
+        <item>Hemraj</item>
+        <item>Homear</item>
+        <item>Lakuar</item>
+        <item>Lathuar</item>
+        <item>Lutiar</item>
+        <item>Ledheriar</item>
+        <item>Lotiaar</item>
+        <item>Others</item>
+
+
+
+
+
+    </string-array>
+    <string-array name="array_gender">
+        <item>Select Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+    <string-array name="array_yes_no">
+        <item>Select status</item>
+        <item>Married</item>
+        <item>UnMarried</item>
+    </string-array>
+    <string-array name="array_manglik">
+        <item>No</item>
+        <item>Yes</item>
+
+    </string-array>
+    <string-array name="array_alcohol">
+        <item>No</item>
+        <item>Yes</item>
+        <item>Occasionally</item>
+    </string-array>
+    <string-array name="array_smoke">
+        <item>No</item>
+        <item>Yes</item>
+        <item>Occasionally</item>
+    </string-array>
+
+
+
+
+
+
+
+
+
+</resources>

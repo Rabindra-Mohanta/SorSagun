@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyToolbar" parent="Theme.AppCompat.Light.NoActionBar">
+        
+        <item name="android:statusBarColor">@color/black</item>
+        <item name="android:navigationBarColor">@color/black</item>
+        <item name="colorControlNormal">@color/white</item>
+
+    </style>
+    <style name="TextMyFont" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/outfield</item>
+    </style>
+
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="background" >@android:color/transparent</item>
+    </style>
+<style name="BottomSheetDialogTheme" parent="Theme.Design.BottomSheetDialog">
+    <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+</style>
+
+
+    
+</resources>

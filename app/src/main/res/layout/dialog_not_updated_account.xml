@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="20dp">
+<RelativeLayout
+    android:background="@color/yellow"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/txtUpdateProfile"
+        android:fontFamily="@font/aclonicaregular"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:text="Plz update your Profile"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <ImageView
+
+        android:id="@+id/imgLogo"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/txtUpdateProfile"
+        android:layout_centerHorizontal="true"
+        android:layout_width="300dp"
+        android:layout_height="150dp"/>
+
+    <android.widget.Button
+        android:id="@+id/btnUpdateProfile"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_bg_gusti"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/imgLogo"
+        android:layout_centerHorizontal="true"
+        android:text="@string/txt_update_profile"
+        android:layout_width="150dp"
+        android:layout_height="40dp"/>
+</RelativeLayout>
+</androidx.cardview.widget.CardView>

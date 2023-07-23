@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AllActivity.SearchUserActivity">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include layout="@layout/my_toolbar"></include>
+    </com.google.android.material.appbar.AppBarLayout>
+     <EditText
+         android:paddingLeft="10dp"
+         android:id="@+id/edtSearch"
+         android:layout_marginHorizontal="10dp"
+         android:layout_marginTop="10dp"
+         android:gravity="center_vertical"
+         android:background="@drawable/bg_edt_search"
+         android:layout_below="@+id/appbar"
+         android:imeOptions="actionSearch"
+         android:layout_width="match_parent"
+         android:hint="Search Name here"
+         android:inputType="textCapWords"
+         android:layout_height="40dp"/>
+<androidx.recyclerview.widget.RecyclerView
+    android:layout_below="@+id/edtSearch"
+    android:layout_marginTop="10dp"
+    android:id="@+id/recyclerView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
+    <ProgressBar
+        android:visibility="gone"
+        android:indeterminateTint="@color/read"
+        android:layout_centerInParent="true"
+        android:id="@+id/progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/txtEmpty"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:text="@string/txt_no_data_found"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>
+</layout>

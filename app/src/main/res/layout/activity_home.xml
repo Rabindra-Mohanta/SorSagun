@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<androidx.drawerlayout.widget.DrawerLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:id="@+id/drawerLayout"
+    android:background="#fff"
+    tools:context=".AllActivity.HomeActivity">
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <include layout="@layout/my_toolbar"></include>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_above="@+id/tabLayout"
+        android:layout_below="@+id/appbar"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        android:id="@+id/viewPager2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+      <com.google.android.material.tabs.TabLayout
+          android:background="#EEE1E1"
+          android:paddingBottom="10dp"
+          app:tabIndicatorGravity="top"
+          app:tabIndicatorAnimationMode="elastic"
+          app:tabIndicatorHeight="2dp"
+          android:layout_alignParentBottom="true"
+          android:id="@+id/tabLayout"
+          app:tabIndicatorColor="@color/yellow"
+          app:tabSelectedTextColor="@color/yellow"
+          app:tabTextColor="@color/black"
+          android:layout_width="match_parent"
+
+          app:tabIconTintMode="src_atop"
+          app:tabIconTint="@color/black"
+          android:layout_height="60dp">
+
+      </com.google.android.material.tabs.TabLayout>
+
+
+    </RelativeLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:id="@+id/navigationView"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/menu_header"
+        app:menu="@menu/side_menu"
+        />
+</androidx.drawerlayout.widget.DrawerLayout>
+</layout>

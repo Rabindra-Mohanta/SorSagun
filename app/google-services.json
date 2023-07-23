@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "247245533422",
+    "project_id": "sorsagun",
+    "storage_bucket": "sorsagun.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:247245533422:android:54fba4b63f6c686adb83ff",
+        "android_client_info": {
+          "package_name": "alkusi.mahato.sarsogune"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "247245533422-hp0bt35f8q3s9ps0d4vbsc9bah923mg1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLNyzdRSsuwdF50s4ldSwgvN6KcwUIcUk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "247245533422-hp0bt35f8q3s9ps0d4vbsc9bah923mg1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

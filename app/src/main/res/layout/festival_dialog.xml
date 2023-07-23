@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="20dp">
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+
+            android:id="@+id/imgLogo"
+            android:layout_centerHorizontal="true"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"/>
+
+        <android.widget.Button
+            android:layout_marginTop="10dp"
+            android:id="@+id/btnUpdateProfile"
+            android:textColor="@color/white"
+            android:background="@drawable/btn_bg_gusti"
+            android:layout_below="@+id/imgLogo"
+            android:layout_centerHorizontal="true"
+            android:text="Skip"
+            android:layout_width="150dp"
+            android:layout_height="40dp"/>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
