@@ -9,11 +9,10 @@ import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.Matrix
-import android.media.ExifInterface
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.provider.OpenableColumns
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
@@ -37,6 +36,7 @@ import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class MyProfileActivity : BaseActivity(),SelectGustiFragment.OnGustiSelected,AdapterImageList.OnClickListener {
     lateinit var binding:ActivityMyProfileBinding;
@@ -380,6 +380,12 @@ private fun init2()
                   val uri = data!!.data;
                     if(uri!=null)
                     {
+                        if(profileImage!=null && !TextUtils.isEmpty(profileImage))
+                        {
+                            deleteImages(profileImage!!)
+                            profileImage = ""
+
+                        }
                         profileUri = uri
                         binding.imgProfile.setImageURI(uri);
                     }
@@ -389,6 +395,15 @@ private fun init2()
             }
             REQ_FOR_MULTIPLE_IMAGE->
             {
+
+                if(candidateImagesListUrlNew!=null && candidateImagesListUrlNew.size>0)
+                {
+
+                    for(i in candidateImagesListUrlNew.indices)
+                    {
+                        deleteImages(candidateImagesListUrlNew.get(i))
+                    }
+                }
                 imgSelectedList.clear();
                 candidateImagesListUrl.clear();
                 candidateImagesListUrlNew.clear();
@@ -712,7 +727,20 @@ private fun DialogeditName()
         {
 
             storageReference =  FirebaseStorage.getInstance().getReference("images/"+fileName);
-           val imageSize = File(uri.path).length()
+
+            var imageSize = 0L;
+
+            var cursor = contentResolver.query(uri,null,null,null,null)
+          if(cursor!=null)
+          {
+              var sizeIndex:Int = cursor!!.getColumnIndex(OpenableColumns.SIZE);
+              cursor.moveToFirst()
+              imageSize = cursor.getLong(sizeIndex)/1024;
+              cursor.close()
+          }
+
+
+
 
 
             var bitMap:Bitmap?=null;
@@ -777,5 +805,25 @@ private fun DialogeditName()
     override fun onCancelImage(pos: Int) {
         candidateImagesListUrlNew.removeAt(pos)
     }
+    private fun deleteImages(imageName:String)
+    {
 
-}
+        val firebaseStorage = FirebaseStorage.getInstance();
+        val storageRef = firebaseStorage.reference
+
+
+        if(imageName!=null && !TextUtils.isEmpty(imageName))
+        {
+            val desertRef = storageRef.child("images/$imageName")
+            desertRef.delete()
+
+
+            }
+        }
+
+
+
+
+
+    }
+

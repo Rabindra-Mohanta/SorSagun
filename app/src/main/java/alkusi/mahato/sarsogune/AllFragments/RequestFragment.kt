@@ -68,7 +68,7 @@ private fun getAllRequest()
 
                     if(task==null || task.result==null)
                     {
-                        binding.txtEmpty.visibility = View.VISIBLE;
+                        binding.txtEmpty.visibility = View.GONE;
                         binding.swipeRefreshLayout.isRefreshing = false;
                         return
                     }

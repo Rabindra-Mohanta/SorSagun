@@ -232,8 +232,10 @@ class AccountVerificationActivity : BaseActivity() {
     private fun deleteImages(imgName:String)
     {
         val firebaseStorage = FirebaseStorage.getInstance();
+        val storageRef = firebaseStorage.reference
         if(imgName!=null && !TextUtils.isEmpty(imgName)) {
-            firebaseStorage.getReference(imgName).delete().addOnCompleteListener {
+            val desertRef = storageRef.child("images/$imgName")
+            desertRef.delete().addOnCompleteListener {
                 Toast.makeText(this, "deleted", Toast.LENGTH_SHORT).show()
                 finish()
             }

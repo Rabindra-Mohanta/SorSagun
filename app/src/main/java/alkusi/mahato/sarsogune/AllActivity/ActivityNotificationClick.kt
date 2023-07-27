@@ -378,9 +378,11 @@ init2();
     private fun deleteImages()
     {
         val firebaseStorage = FirebaseStorage.getInstance();
+        val storageRef = firebaseStorage.reference
         if(profileImage!=null && !TextUtils.isEmpty(profileImage))
         {
-            firebaseStorage.getReference(profileImage).delete().addOnCompleteListener {
+            val desertRef = storageRef.child("images/$profileImage")
+            desertRef.delete().addOnCompleteListener {
 
             }
         }
@@ -388,7 +390,8 @@ init2();
       {
           for(i in allImages.indices)
           {
-              firebaseStorage.getReference(allImages.get(i)).delete().addOnCompleteListener {
+              val desertRef = storageRef.child("images/${allImages.get(i)}")
+              desertRef.delete().addOnCompleteListener {
                    if(i==allImages.size-1)
                    {
                        Toast.makeText(this,"Account deleted",Toast.LENGTH_SHORT).show()

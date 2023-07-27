@@ -72,30 +72,39 @@ class HomeFragment : BaseFragment(),AdapterHome.OnItemClick,AdapterImageList.OnC
     {
         Log.e(TAG,"rabindra->"+true)
         binding.progressbar.visibility = View.VISIBLE;
-
         db.collection(resources.getString(R.string.fir_Users)).orderBy("TimeStamp").startAfter(lastVisible).limit(10).get().addOnCompleteListener(object :OnCompleteListener<QuerySnapshot>
         {
             override fun onComplete(querySnapshot: Task<QuerySnapshot>) {
 
                    val result =  querySnapshot.result
-                      if(lastVisible==null)
-                      {
-                          startPagination =1;
-                          dataList.clear()
-                      }
-              val documentList = ArrayList<DocumentSnapshot>();
-                for(i in result.documents.size-1 downTo 0)
-                {
-                    documentList.add(result.documents.get(i))
-                    if(i==result.documents.size-1)
-                    {
+                 if(result!=null && result.documents.size>0)
+                 {
+                     if(lastVisible==null)
+                     {
+                         startPagination =1;
+                         dataList.clear()
+                     }
+                     val documentList = ArrayList<DocumentSnapshot>();
+                     for(i in result.documents.size-1 downTo 0)
+                     {
+                         documentList.add(result.documents.get(i))
+                         if(i==result.documents.size-1)
+                         {
 
-                        lastVisible = result.documents.get(i);
-                    }
-                }
-                adapterHome!!.addData(documentList)
-                binding.progressbar.visibility = View.GONE;
-                   binding.swipeRefreshLayout.isRefreshing = false;
+                             lastVisible = result.documents.get(i);
+                         }
+                     }
+                     adapterHome!!.addData(documentList)
+                     binding.progressbar.visibility = View.GONE;
+                     binding.swipeRefreshLayout.isRefreshing = false;
+
+                 }
+                else
+                 {
+                     binding.progressbar.visibility = View.GONE;
+                 }
+
+
             }
 
         })
@@ -123,7 +132,7 @@ class HomeFragment : BaseFragment(),AdapterHome.OnItemClick,AdapterImageList.OnC
         {
             override fun onRefresh() {
                 startPagination =1;
-            lastVisible = null
+               lastVisible = null
                 dataList.clear()
                 getDataFromFirebase();
             }
@@ -142,15 +151,10 @@ private fun init()
 
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
-
             val totalItem = layoutManager!!.itemCount;
             val visibleItem = layoutManager!!.childCount
             val firstVisibleItem = layoutManager!!.findFirstVisibleItemPosition()
             val lastVisible = layoutManager!!.findLastVisibleItemPosition()
-
-
-
-
 
 
 
@@ -565,29 +569,29 @@ private fun showAlertDialog(documentSnapshot: DocumentSnapshot?)
     private fun deleteImages()
     {
         val firebaseStorage = FirebaseStorage.getInstance();
+
+        val storageRef = firebaseStorage.reference
+
+
+
         if(profileImage!=null && !TextUtils.isEmpty(profileImage))
         {
-            firebaseStorage.getReference(profileImage).delete().addOnCompleteListener {
-            }
+            val desertRef = storageRef.child("images/$profileImage")
+            desertRef.delete()
+
         }
         if(allImages.size>0)
         {
             for(i in allImages.indices)
             {
-                firebaseStorage.getReference(allImages.get(i)).delete().addOnCompleteListener {
-                    if(bottomSheetDialog!=null && bottomSheetDialog!!.isShowing)
-                    {
-
-                        if(i==allImages.size-1)
-                        {
-                            bottomSheetDialog!!.dismiss()
-                            startPagination =1;
-                            lastVisible = null;
-                            getDataFromFirebase()
-                        }
-
-
-                    }
+                val desertRef = storageRef.child("images/${allImages.get(i)}")
+                desertRef.delete()
+                if(i==allImages.size-1)
+                {
+                    bottomSheetDialog!!.dismiss()
+                    startPagination =1;
+                    lastVisible = null;
+                    getDataFromFirebase()
                 }
             }
         }
