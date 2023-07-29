@@ -14,5 +14,12 @@
 
         />
 
+    <item
+        android:visible="false"
+        android:title="filter"
+        app:showAsAction="always"
+        android:icon="@drawable/icon_filter"
+        android:id="@+id/menu_filter"
 
+        />
 </menu>

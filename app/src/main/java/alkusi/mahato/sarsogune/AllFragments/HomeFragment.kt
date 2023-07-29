@@ -8,20 +8,22 @@ import alkusi.mahato.sarsogune.NotificationByFcm.Api.ApiUtilities
 import alkusi.mahato.sarsogune.NotificationByFcm.Model.NotificationData
 import alkusi.mahato.sarsogune.NotificationByFcm.Model.PushNotification
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import alkusi.mahato.sarsogune.R
 import alkusi.mahato.sarsogune.databinding.FragmentHomeBinding
+import android.app.ActionBar.LayoutParams
+import android.app.Dialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.text.TextUtils
 import android.util.Log
+import android.view.*
 import android.widget.Button
 import android.widget.CheckBox
+import android.widget.CompoundButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import android.widget.Switch
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.isVisible
@@ -56,6 +58,9 @@ class HomeFragment : BaseFragment(),AdapterHome.OnItemClick,AdapterImageList.OnC
     lateinit var db:FirebaseFirestore;
      var storageReference: StorageReference?=null;
      val TAG = "HomeFragment"
+    var switchMaleBo = false;
+    var switchFemaleBo = false;
+    var switchAllBo = true;
     var querySnapshot1:QuerySnapshot?=null;
     lateinit var layoutManager: LinearLayoutManager;
     var profileImage = ""
@@ -67,32 +72,36 @@ class HomeFragment : BaseFragment(),AdapterHome.OnItemClick,AdapterImageList.OnC
     var previousScrollPosition = 0;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+  setHasOptionsMenu(true)
     }
     private fun getDataFromFirebase()
     {
         Log.e(TAG,"rabindra->"+true)
         binding.progressbar.visibility = View.VISIBLE;
-        db.collection(resources.getString(R.string.fir_Users)).orderBy("TimeStamp").startAfter(lastVisible).limit(10).get().addOnCompleteListener(object :OnCompleteListener<QuerySnapshot>
+        db.collection(resources.getString(R.string.fir_Users)).orderBy("TimeStamp").get().addOnCompleteListener(object :OnCompleteListener<QuerySnapshot>
         {
             override fun onComplete(querySnapshot: Task<QuerySnapshot>) {
 
                    val result =  querySnapshot.result
+                dataList.clear()
+                adapterHome!!.dataList.clear()
                  if(result!=null && result.documents.size>0)
                  {
-                     if(lastVisible==null)
-                     {
-                         startPagination =1;
-                         dataList.clear()
-                     }
+
                      val documentList = ArrayList<DocumentSnapshot>();
                      for(i in result.documents.size-1 downTo 0)
                      {
-                         documentList.add(result.documents.get(i))
-                         if(i==result.documents.size-1)
-                         {
 
-                             lastVisible = result.documents.get(i);
-                         }
+
+                             var data = result.documents.get(i)
+
+
+                             if(data.get(resources.getString(R.string.fir_CandidateName)) != null )
+                             {
+
+                                 documentList.add(result.documents.get(i))
+                             }
+
                      }
                      adapterHome!!.addData(documentList)
                      binding.progressbar.visibility = View.GONE;
@@ -141,40 +150,40 @@ class HomeFragment : BaseFragment(),AdapterHome.OnItemClick,AdapterImageList.OnC
     }
 private fun init()
 {
-    binding.recyclerView.addOnScrollListener(object :RecyclerView.OnScrollListener()
-    {
-
-        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-            super.onScrollStateChanged(recyclerView, newState)
-
-        }
-
-        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-            super.onScrolled(recyclerView, dx, dy)
-            val totalItem = layoutManager!!.itemCount;
-            val visibleItem = layoutManager!!.childCount
-            val firstVisibleItem = layoutManager!!.findFirstVisibleItemPosition()
-            val lastVisible = layoutManager!!.findLastVisibleItemPosition()
-
-
-
-            if((firstVisibleItem+visibleItem)>=totalItem && dy > 0 && previousScrollPosition<=binding.recyclerView.computeVerticalScrollOffset())
-            {
-                if(startPagination*10 >= totalItem )
-                {
-                    if(!binding.progressbar.isVisible)
-                    {
-                        startPagination++;
-                        getDataFromFirebase();
-                    }
-                }
-
-
-            }
-            previousScrollPosition = recyclerView.computeVerticalScrollOffset();
-        }
-
-    })
+//    binding.recyclerView.addOnScrollListener(object :RecyclerView.OnScrollListener()
+//    {
+//
+//        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+//            super.onScrollStateChanged(recyclerView, newState)
+//
+//        }
+//
+//        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//            super.onScrolled(recyclerView, dx, dy)
+//            val totalItem = layoutManager!!.itemCount;
+//            val visibleItem = layoutManager!!.childCount
+//            val firstVisibleItem = layoutManager!!.findFirstVisibleItemPosition()
+//            val lastVisible = layoutManager!!.findLastVisibleItemPosition()
+//
+//
+//
+//            if((firstVisibleItem+visibleItem)>=totalItem && dy > 0 && previousScrollPosition<=binding.recyclerView.computeVerticalScrollOffset())
+//            {
+//                if(startPagination*10 >= totalItem )
+//                {
+//                    if(!binding.progressbar.isVisible)
+//                    {
+//                        startPagination++;
+//                        getDataFromFirebase();
+//                    }
+//                }
+//
+//
+//            }
+//            previousScrollPosition = recyclerView.computeVerticalScrollOffset();
+//        }
+//
+//    })
 
     db = FirebaseFirestore.getInstance();
     getDataFromFirebase();
@@ -584,7 +593,7 @@ private fun showAlertDialog(documentSnapshot: DocumentSnapshot?)
         {
             for(i in allImages.indices)
             {
-                val desertRef = storageRef.child("images/${allImages.get(i)}")
+                val desertRef = storageRef.child("images/$allImages.get(i)")
                 desertRef.delete()
                 if(i==allImages.size-1)
                 {
@@ -615,5 +624,150 @@ private fun showAlertDialog(documentSnapshot: DocumentSnapshot?)
 
         }
 
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        menu.findItem(R.id.menu_filter).isVisible=true
+        super.onPrepareOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId)
+        {
+            R.id.menu_filter ->
+            {
+                showFilterDialog()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+    private fun showFilterDialog()
+    {
+            val dialog = Dialog(requireContext())
+        dialog.setCancelable(true)
+        dialog.setContentView(R.layout.filter_dialog)
+        val switchMale = dialog.findViewById<Switch>(R.id.switchMale)
+        val switchFemale = dialog.findViewById<Switch>(R.id.switchFemale)
+        val switchAll = dialog.findViewById<Switch>(R.id.switchAll)
+
+        switchMale.isChecked = switchMaleBo;
+        switchFemale.isChecked = switchFemaleBo;
+        switchAll.isChecked = switchAllBo;
+
+        switchAll.setOnCheckedChangeListener(object :CompoundButton.OnCheckedChangeListener
+        {
+            override fun onCheckedChanged(p0: CompoundButton?, p1: Boolean) {
+              if(p1)
+              {
+                  switchMaleBo = false;
+                  switchFemaleBo = false;
+                  switchAllBo = true;
+                  if(adapterHome!=null)
+                  {
+                      adapterHome!!.dataList.clear()
+                      adapterHome!!.notifyDataSetChanged()
+                  }
+                  getDataFromFirebase();
+                  dialog.dismiss()
+              }
+            }
+
+        })
+        switchMale.setOnCheckedChangeListener(object :CompoundButton.OnCheckedChangeListener
+        {
+            override fun onCheckedChanged(p0: CompoundButton?, p1: Boolean) {
+                if(p1)
+                {
+                    switchMaleBo = true;
+                    switchFemaleBo = false;
+                    switchAllBo = false;
+                    if(adapterHome!=null)
+                    {
+                        adapterHome!!.dataList.clear()
+                        adapterHome!!.notifyDataSetChanged()
+                    }
+
+                    getDataFromFirebase("Male")
+                    dialog.dismiss()
+                }
+            }
+
+        })
+
+        switchFemale.setOnCheckedChangeListener(object :CompoundButton.OnCheckedChangeListener
+        {
+            override fun onCheckedChanged(p0: CompoundButton?, p1: Boolean) {
+                if(p1)
+                {
+                    switchMaleBo = false;
+                    switchFemaleBo = true;
+                    switchAllBo = false;
+                    if(adapterHome!=null)
+                    {
+                        adapterHome!!.dataList.clear()
+                        adapterHome!!.notifyDataSetChanged()
+                    }
+                    getDataFromFirebase("Female")
+                    dialog.dismiss()
+                }
+            }
+
+        })
+        dialog.window!!.setLayout(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT)
+        dialog.show()
+    }
+    private fun getDataFromFirebase(type:String)
+    {
+        Log.e(TAG,"rabindra->"+true)
+        binding.progressbar.visibility = View.VISIBLE;
+        db.collection(resources.getString(R.string.fir_Users)).orderBy("TimeStamp").whereEqualTo(resources.getString(R.string.fir_Gender),type).get().addOnCompleteListener(object :OnCompleteListener<QuerySnapshot>
+        {
+            override fun onComplete(querySnapshot: Task<QuerySnapshot>) {
+
+                val result =  querySnapshot.result
+                dataList.clear()
+                adapterHome!!.dataList.clear()
+                if(result!=null && result.documents.size>0)
+                {
+
+                    val documentList = ArrayList<DocumentSnapshot>();
+                    for(i in result.documents.size-1 downTo 0)
+                    {
+
+
+                        var data = result.documents.get(i)
+
+
+                        if(data.get(resources.getString(R.string.fir_CandidateName)) != null )
+                        {
+
+                            documentList.add(result.documents.get(i))
+                        }
+
+                    }
+                    adapterHome!!.addData(documentList)
+                    binding.progressbar.visibility = View.GONE;
+                    binding.swipeRefreshLayout.isRefreshing = false;
+                    binding.txtEmpty.visibility = View.GONE
+                }
+                else
+                {
+                    binding.txtEmpty.visibility = View.VISIBLE
+                    binding.progressbar.visibility = View.GONE;
+                }
+
+
+            }
+
+        })
+            .addOnFailureListener(object :OnFailureListener
+            {
+                override fun onFailure(p0: Exception) {
+                    Toast.makeText(requireContext(),resources.getString(R.string.msg_something_went),Toast.LENGTH_SHORT).show()
+                    binding.progressbar.visibility = View.GONE;
+                    binding.swipeRefreshLayout.isRefreshing = false;
+                }
+            })
     }
 }

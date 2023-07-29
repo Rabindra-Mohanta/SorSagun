@@ -182,6 +182,7 @@ class HomeActivity : BaseActivity() {
         })
     }
     private fun setDrawerLayout() {
+
         toggle = ActionBarDrawerToggle(this@HomeActivity, drawerLayout, toolbar, R.string.txt_openDrawer, R.string.txt_closeDrawer);
         binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
@@ -197,6 +198,8 @@ class HomeActivity : BaseActivity() {
             {
                 val firestore = FirebaseStorage.getInstance().getReference("images/"+image)
                 firestore.downloadUrl.addOnCompleteListener {
+                    //for crash
+                    if(isFinishing) return@addOnCompleteListener
                     Glide.with(this@HomeActivity).load(it.toString()).placeholder(R.drawable.man_icon).into(profile)
                 }
             }

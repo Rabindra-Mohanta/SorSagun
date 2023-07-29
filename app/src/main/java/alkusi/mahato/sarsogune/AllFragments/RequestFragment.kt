@@ -60,7 +60,7 @@ private fun getAllRequest()
 {
 
     binding.progressbar.visibility = View.VISIBLE;
-    firestore.collection(resources.getString(R.string.fir_Users)).document(HomeActivity.email).collection(resources.getString(R.string.fir_requested)).orderBy("TimeStamp").startAfter(lastVisible).limit(10).get().addOnCompleteListener(object :OnCompleteListener<QuerySnapshot>
+    firestore.collection(resources.getString(R.string.fir_Users)).document(HomeActivity.email).collection(resources.getString(R.string.fir_requested)).get().addOnCompleteListener(object :OnCompleteListener<QuerySnapshot>
     {
       override fun onComplete(task: Task<QuerySnapshot>) {
            if(task.isSuccessful)
@@ -72,26 +72,18 @@ private fun getAllRequest()
                         binding.swipeRefreshLayout.isRefreshing = false;
                         return
                     }
-
-               if(lastVisible==null)
-               {
                    requestedList.clear()
-               }
-
              val dataList = ArrayList<DocumentSnapshot>();
                for(i in task.result.documents.size-1 downTo  0)
                {
                    dataList.add(task.result.documents.get(i))
-                   if(i==task.result.documents.size-1)
-                   {
-                       lastVisible = task.result.documents.get(i)
-                   }
+
                }
                requestedList.addAll(dataList)
                adapter!!.notifyDataSetChanged();
 
 
-                if(requestedList.size==0 && lastVisible == null)
+                if(requestedList.size==0 )
                 {
                     startPagination = 1;
                     previousScrollPosition = 0;
@@ -126,36 +118,36 @@ private fun init()
 
 
 
-    binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener()
-    {
-        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-            super.onScrollStateChanged(recyclerView, newState)
-        }
-
-        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-            super.onScrolled(recyclerView, dx, dy)
-
-            val totalItem = layoutManager!!.itemCount;
-            val visibleItem = layoutManager!!.childCount
-            val firstVisibleItem = layoutManager!!.findFirstVisibleItemPosition()
-
-            if((firstVisibleItem+visibleItem)>=totalItem && dy > 0 && previousScrollPosition<=binding.recyclerView.computeVerticalScrollOffset())
-
-            {
-
-                if(startPagination*10 >= totalItem )
-                {
-                    if(!binding.progressbar.isVisible)
-                    {
-                        startPagination++;
-                        getAllRequest()
-                    }
-                }
-
-            }
-
-        }
-
-    })
+//    binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener()
+//    {
+//        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+//            super.onScrollStateChanged(recyclerView, newState)
+//        }
+//
+//        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//            super.onScrolled(recyclerView, dx, dy)
+//
+//            val totalItem = layoutManager!!.itemCount;
+//            val visibleItem = layoutManager!!.childCount
+//            val firstVisibleItem = layoutManager!!.findFirstVisibleItemPosition()
+//
+//            if((firstVisibleItem+visibleItem)>=totalItem && dy > 0 && previousScrollPosition<=binding.recyclerView.computeVerticalScrollOffset())
+//
+//            {
+//
+//                if(startPagination*10 >= totalItem )
+//                {
+//                    if(!binding.progressbar.isVisible)
+//                    {
+//                        startPagination++;
+//                        getAllRequest()
+//                    }
+//                }
+//
+//            }
+//
+//        }
+//
+//    })
 }
 }
