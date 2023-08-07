@@ -17,7 +17,6 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.messaging.FirebaseMessaging
-
 class LoginActivity : BaseActivity() {
     lateinit var binding:ActivityLoginBinding;
     lateinit var firebaseAuth: FirebaseAuth;
@@ -90,18 +89,18 @@ private fun init()
                 isValid = false
                 binding.edtPassword.setError(resources.getString(R.string.txt_enterValid_password))
             }
-            if(!binding.checkAge.isChecked)
-            {
-                isValid = false
-                Toast.makeText(this@LoginActivity,"We are allowing above 18 years only you can not login",Toast.LENGTH_SHORT).show()
-
-            }
-            if(!binding.btnCheck.isChecked)
-            {
-                isValid = false
-                Toast.makeText(this@LoginActivity,"Please agree with the Terms Condition &amp; Privacy Policy",Toast.LENGTH_SHORT).show()
-
-            }
+//            if(!binding.checkAge.isChecked)
+//            {
+//                isValid = false
+//                Toast.makeText(this@LoginActivity,"We are allowing above 18 years only you can not login",Toast.LENGTH_SHORT).show()
+//
+//            }
+//            if(!binding.btnCheck.isChecked)
+//            {
+//                isValid = false
+//                Toast.makeText(this@LoginActivity,"Please agree with the Terms Condition &amp; Privacy Policy",Toast.LENGTH_SHORT).show()
+//
+//            }
             if(isValid)
             {
                 if(isConnectionAvailable())

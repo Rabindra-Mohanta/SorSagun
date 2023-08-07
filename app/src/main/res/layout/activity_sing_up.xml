@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 <RelativeLayout
+android:background="#D5C9C9"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AllActivity.SingUpActivity">
@@ -16,210 +18,169 @@
           android:layout_below="@id/appbar"
           android:layout_width="match_parent"
           android:layout_height="match_parent">
-          <RelativeLayout
-              android:layout_marginHorizontal="20dp"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
-              <ProgressBar
-                  android:visibility="gone"
-                  android:id="@+id/progressbar"
-                  android:indeterminateTint="@color/yellow"
-                  android:layout_centerInParent="true"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"/>
-              <ImageView
-                  android:id="@+id/imgTop"
-                  android:src="@drawable/login_top"
-                  android:layout_marginTop="10dp"
-                  android:layout_centerHorizontal="true"
-                  android:layout_width="150dp"
-                  android:layout_height="150dp"/>
-              <TextView
-                  android:id="@+id/textSorsaguneBiha"
-                  style="@style/TextMyFont"
-                  android:layout_marginTop="10dp"
-                  android:layout_marginLeft="10dp"
-                  android:textSize="20sp"
-                  android:textColor="@color/black"
-                  android:layout_below="@+id/imgTop"
-                  android:layout_width="250dp"
-                  android:layout_height="wrap_content"
-                  android:text="Sor Sagune biha Find your match"
-                  />
-              <ImageView
-                  android:layout_marginRight="10dp"
-                  android:layout_alignParentRight="true"
-                  android:layout_marginTop="10dp"
-                  android:layout_below="@+id/imgTop"
-                  android:src="@drawable/img_india"
-                  android:layout_width="30dp"
-                  android:layout_height="30dp"/>
-              <TextView
-                  android:id="@+id/textDiscover"
-                  style="@style/TextMyFont"
-                  android:layout_marginLeft="10dp"
-                  android:layout_marginTop="5dp"
-                  android:layout_below="@+id/textSorsaguneBiha"
-                  android:layout_width="200dp"
-                  android:layout_height="wrap_content"
-                  android:text="@string/msg_discover_your_patner"
-                  />
-              <TextView
-                  style="@style/TextMyFont"
-                  android:layout_marginLeft="10dp"
-                  android:layout_marginTop="10dp"
-                  android:text="@string/txt_create_new_account"
-                  android:layout_below="@+id/textDiscover"
-                  android:layout_width="wrap_content"
-                  android:textColor="@color/black"
-                  android:textSize="16sp"
-                  android:id="@+id/textCreateAccount"
-                  android:layout_height="wrap_content"/>
 
-              <LinearLayout
-                  android:layout_below="@+id/textCreateAccount"
-                  android:orientation="vertical"
+        
+              <RelativeLayout
                   android:layout_width="match_parent"
                   android:layout_height="match_parent">
-              <com.google.android.material.textfield.TextInputLayout
-                  android:layout_marginTop="20dp"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_marginHorizontal="20dp"
-                  android:textColorHint="@color/black"
-                  android:hint="@string/txt_enter_your_name"
-                  android:outlineSpotShadowColor="@color/black"
-                  style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                  >
+                  <ProgressBar
+                      android:visibility="gone"
+                      android:id="@+id/progressbar"
+                      android:indeterminateTint="@color/yellow"
+                      android:layout_centerInParent="true"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"/>
 
-                  <com.google.android.material.textfield.TextInputEditText
-                      android:id="@+id/edtName"
+
+                  <LinearLayout
+                      android:orientation="vertical"
                       android:layout_width="match_parent"
-                      android:layout_height="50dp"
-                      android:inputType="textCapWords"
-                      android:textColor="@color/black"
+                      android:layout_height="match_parent">
+                      <TextView
 
-                      />
+                          android:layout_marginHorizontal="20dp"
+                          android:layout_marginTop="20dp"
+                          android:textColor="@color/black"
+                          android:textSize="16sp"
+                          android:text="@string/txt_enter_your_name"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"/>
 
-              </com.google.android.material.textfield.TextInputLayout>
-                  <RelativeLayout
-                      android:layout_marginHorizontal="20dp"
-                      android:layout_marginTop="20dp"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content">
+                      <EditText
+                          android:background="@drawable/bg_edit_txt"
+                          android:id="@+id/edtName"
+                          android:layout_width="match_parent"
+                          android:layout_height="50dp"
+                          android:inputType="textCapWords"
+                          android:textColor="@color/black"
+                          android:layout_marginHorizontal="20dp"
+                          android:layout_marginTop="10dp"
+                          />
                       <TextView
                           android:id="@+id/txtGender"
+                          android:layout_marginHorizontal="20dp"
+                          android:layout_marginTop="20dp"
                           android:textColor="@color/black"
                           android:textSize="15sp"
-                          android:layout_marginTop="5dp"
                           android:text="@string/txt_gender"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"/>
-                      <Spinner
-                          android:gravity="center_horizontal"
-                          android:layout_alignParentRight="true"
-                          android:id="@+id/spinnerGender"
+                      <RelativeLayout
+                          android:layout_marginHorizontal="20dp"
+                          android:layout_marginTop="20dp"
+                          android:background="@drawable/bg_edit_txt"
+                          android:layout_width="match_parent"
+                          android:layout_height="40dp">
+                          <Spinner
+                              android:layout_centerVertical="true"
+                              android:gravity="center_horizontal"
+                              android:id="@+id/spinnerGender"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"/>
+                      </RelativeLayout>
+
+
+
+                      <TextView
+                          android:layout_marginHorizontal="20dp"
+                          android:layout_marginTop="20dp"
+                          android:textColor="@color/black"
+                          android:textSize="16sp"
+                          android:text="@string/txt_enterEmail"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"/>
+
+
+                      <EditText
+                          android:background="@drawable/bg_edit_txt"
+                          android:layout_marginTop="10dp"
+                          android:id="@+id/edtEmail"
+                          android:layout_marginHorizontal="20dp"
+                          android:layout_width="match_parent"
+                          android:layout_height="50dp"
+                          android:inputType="textEmailAddress"
+                          android:textColor="@color/black"
+                          />
+
+                      <TextView
+
+                          android:textSize="15sp"
+                          android:text="@string/txt_password_type"
+                          android:textColor="@color/yellow"
+                          android:textStyle="bold"
+                          android:layout_marginHorizontal="20dp"
+                          android:layout_marginTop="10dp"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"/>
+
+                      <TextView
+                          android:layout_marginHorizontal="20dp"
+                          android:layout_marginTop="20dp"
+                          android:textColor="@color/black"
+                          android:textSize="16sp"
+                          android:text="@string/txt_enter_new_password"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"/>
+
+                      <EditText
+                          android:background="@drawable/bg_edit_txt"
+                          android:layout_marginHorizontal="20dp"
+                          android:layout_marginTop="10dp"
+                          android:id="@+id/edtNewPass"
+                          android:layout_width="match_parent"
+                          android:layout_height="50dp"
+                          android:textColor="@color/black"
+
+                          />
+
+
+                      <TextView
+                          android:layout_marginHorizontal="20dp"
+                          android:layout_marginTop="20dp"
+                          android:textColor="@color/black"
+                          android:textSize="16sp"
+                          android:text="@string/txt_confirm_password"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"/>
+                      <EditText
+                          android:background="@drawable/bg_edit_txt"
+                          android:layout_marginTop="10dp"
+                          android:layout_marginHorizontal="20dp"
+                          android:id="@+id/edtConfirmPassword"
+                          android:layout_width="match_parent"
+                          android:layout_height="50dp"
+                          android:textColor="@color/black"
+
+                          />
+
+                      <CheckBox
+                          android:id="@+id/checkAge"
+                          android:layout_marginTop="10dp"
+                          android:layout_gravity="center_horizontal"
+                          android:text="Yes i am above 18 years old"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"/>
-                  </RelativeLayout>
-              <com.google.android.material.textfield.TextInputLayout
-                  android:layout_marginTop="20dp"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_marginHorizontal="20dp"
-                  android:textColorHint="@color/black"
-                  android:hint="@string/txt_enterEmail"
-                  android:outlineSpotShadowColor="@color/black"
-                  style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                  >
+                      <RadioButton
+                          android:id="@+id/btnCheck"
+                          android:layout_marginTop="20dp"
+                          android:layout_marginHorizontal="20dp"
+                          android:text="@string/msg_i_agree_with_th"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"/>
 
-                  <com.google.android.material.textfield.TextInputEditText
-                      android:id="@+id/edtEmail"
-                      android:layout_width="match_parent"
-                      android:layout_height="50dp"
-                      android:inputType="textEmailAddress"
-                      android:textColor="@color/black"
+                      <android.widget.Button
+                          android:textColor="@color/white"
+                          android:layout_marginBottom="20dp"
+                          android:id="@+id/btnCreate"
+                          android:background="@drawable/bg_login_btn"
+                          android:text="@string/txt_create"
+                          android:layout_marginTop="50dp"
+                          android:layout_gravity="center_horizontal"
+                          android:layout_width="200dp"
+                          android:layout_height="50dp"/>
+                  </LinearLayout>
+              </RelativeLayout>
 
-                      />
-
-              </com.google.android.material.textfield.TextInputLayout>
-                 <TextView
-                    android:fontFamily="@font/outfield"
-                     android:textSize="15sp"
-                     android:text="@string/txt_password_type"
-                     android:textColor="@color/yellow"
-                     android:textStyle="bold"
-                     android:layout_marginHorizontal="20dp"
-                     android:layout_marginTop="10dp"
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"/>
-              <com.google.android.material.textfield.TextInputLayout
-                  android:id="@+id/edtPass"
-                  android:layout_marginTop="20dp"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_marginHorizontal="20dp"
-                  android:textColorHint="@color/black"
-                  android:hint="@string/txt_enter_new_password"
-                  android:outlineSpotShadowColor="@color/black"
-                  style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                  >
-
-                  <com.google.android.material.textfield.TextInputEditText
-                      android:id="@+id/edtNewPass"
-                      android:layout_width="match_parent"
-                      android:layout_height="50dp"
-                      android:textColor="@color/black"
-
-                      />
-
-              </com.google.android.material.textfield.TextInputLayout>
-              <com.google.android.material.textfield.TextInputLayout
-                  android:layout_marginTop="20dp"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_marginHorizontal="20dp"
-                  android:textColorHint="@color/black"
-                  android:hint="@string/txt_confirm_password"
-                  android:outlineSpotShadowColor="@color/black"
-                  style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                  >
-
-                  <com.google.android.material.textfield.TextInputEditText
-                      android:id="@+id/edtConfirmPassword"
-                      android:layout_width="match_parent"
-                      android:layout_height="50dp"
-                      android:textColor="@color/black"
-
-                      />
-
-              </com.google.android.material.textfield.TextInputLayout>
-                  <CheckBox
-                      android:id="@+id/checkAge"
-                      android:layout_marginTop="10dp"
-                      android:layout_gravity="center_horizontal"
-                      android:text="Yes i am above 18 years old"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"/>
-                  <RadioButton
-    android:id="@+id/btnCheck"
-    android:layout_marginTop="20dp"
-    android:layout_marginHorizontal="20dp"
-    android:text="@string/msg_i_agree_with_th"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"/>
-
-                  <android.widget.Button
-                      android:layout_marginBottom="20dp"
-                      android:id="@+id/btnCreate"
-                      android:background="@drawable/bg_login_btn"
-                      android:text="@string/txt_create"
-                      android:layout_marginTop="50dp"
-                      android:layout_gravity="center_horizontal"
-                      android:layout_width="200dp"
-                      android:layout_height="50dp"/>
-              </LinearLayout>
-          </RelativeLayout>
       </androidx.core.widget.NestedScrollView>
 
 

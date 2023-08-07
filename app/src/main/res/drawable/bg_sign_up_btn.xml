@@ -5,8 +5,8 @@
         android:color="@color/black"
         android:width="2dp"
         />
-<solid
-    android:color="#E91E63" />
+    <solid
+        android:color="@color/green" />
     <corners
         android:radius="10dp" />
 </shape>

@@ -6,168 +6,149 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/toolbar"
+    android:background="@drawable/loging_bg"
     tools:context=".AllActivity.LoginActivity">
-
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <RelativeLayout
-            android:layout_marginHorizontal="20dp"
+        <androidx.cardview.widget.CardView
+            android:layout_marginTop="20dp"
+            android:id="@+id/cardView"
+            app:cardCornerRadius="10dp"
+            android:elevation="10dp"
+            android:layout_centerInParent="true"
+            android:layout_marginHorizontal="30dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ProgressBar
-                android:visibility="gone"
-                android:id="@+id/progressbar"
-                android:indeterminateTint="@color/yellow"
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <ImageView
-                android:id="@+id/imgTop"
-                android:src="@drawable/login_top"
-                android:layout_marginTop="10dp"
-                android:layout_centerHorizontal="true"
-                android:layout_width="150dp"
-                android:layout_height="150dp"/>
-            <TextView
-                android:id="@+id/textSorsaguneBiha"
-                style="@style/TextMyFont"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:textSize="20sp"
-                android:textColor="@color/black"
-                android:layout_below="@+id/imgTop"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:text="Sar Sogune A Kudmali marraige App 2.0"
-                />
-            <ImageView
-                android:layout_marginRight="10dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="10dp"
-                android:layout_below="@+id/imgTop"
-                android:src="@drawable/img_india"
-                android:layout_width="30dp"
-                android:layout_height="30dp"/>
-            <TextView
-                android:id="@+id/textDiscover"
-                style="@style/TextMyFont"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_below="@+id/textSorsaguneBiha"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:text="@string/msg_discover_your_patner"
-                />
-            <TextView
-                style="@style/TextMyFont"
-                android:gravity="center_horizontal"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:text="@string/txt_login"
-                android:layout_below="@+id/textDiscover"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+              android:background="#D3D2E3"
                 android:layout_width="match_parent"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                android:id="@+id/textCreateAccount"
-                android:layout_height="wrap_content"/>
-
-            <LinearLayout
-                android:layout_below="@+id/textCreateAccount"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_marginTop="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:textColorHint="@color/black"
-                    android:hint="@string/txt_enterEmail"
-                    android:outlineSpotShadowColor="@color/black"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    >
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edtEmail"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:inputType="textEmailAddress"
-                        android:textColor="@color/black"
-
-                        />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_marginTop="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:textColorHint="@color/black"
-                    android:hint="@string/txt_enterPassword"
-                    android:outlineSpotShadowColor="@color/black"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    >
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edtPassword"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:textColor="@color/black"
-
-                        />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-              <CheckBox
-                  android:id="@+id/checkAge"
-                  android:layout_marginTop="10dp"
-                  android:layout_gravity="center_horizontal"
-                  android:text="Yes i am above 18 years old"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"/>
-                <RadioButton
-                    android:id="@+id/btnCheck"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginHorizontal="20dp"
-                    android:text="@string/msg_i_agree_with_th"
-                    android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ProgressBar
+                    android:visibility="gone"
+                    android:id="@+id/progressbar"
+                    android:indeterminateTint="@color/yellow"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-               <TextView
-                   android:id="@+id/txtForgotPassword"
-                   android:layout_gravity="right"
-                   android:layout_marginTop="5dp"
-                   android:textSize="15sp"
-                   android:textColor="@color/black"
-                   android:gravity="right"
-                   android:layout_marginHorizontal="20dp"
-                   android:text="@string/txt_forgotPassword"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"/>
-
-                <android.widget.Button
-                    android:id="@+id/btnLogin"
-                    android:background="@drawable/bg_login_btn"
-                    android:text="@string/txt_login"
-                    android:layout_marginTop="30dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_width="200dp"
-                    android:layout_height="50dp"/>
-                <android.widget.Button
-                    android:id="@+id/btnNewAccount"
-                    android:text="@string/txt_create_new_account"
-                    android:background="@drawable/bg_login_btn"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginHorizontal="30dp"
+                <LinearLayout
+                    android:layout_marginBottom="30dp"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"/>
-            </LinearLayout>
-        </RelativeLayout>
-    </androidx.core.widget.NestedScrollView>
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textColor="@color/black"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:text="Login Here"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_marginTop="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:textColorHint="@color/black"
+                        android:hint="@string/txt_enterEmail"
+                        android:outlineSpotShadowColor="@color/black"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:inputType="textEmailAddress"
+                            android:textColor="@color/black"
+
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_marginTop="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:textColorHint="@color/black"
+                        android:hint="@string/txt_enterPassword"
+                        android:outlineSpotShadowColor="@color/black"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:textColor="@color/black"
+
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!--                 <CheckBox-->
+                    <!--                     android:id="@+id/checkAge"-->
+                    <!--                     android:layout_marginTop="10dp"-->
+                    <!--                     android:layout_gravity="center_horizontal"-->
+                    <!--                     android:text="Yes i am above 18 years old"-->
+                    <!--                     android:layout_width="wrap_content"-->
+                    <!--                     android:layout_height="wrap_content"/>-->
+                    <!--                 <RadioButton-->
+                    <!--                     android:id="@+id/btnCheck"-->
+                    <!--                     android:layout_marginTop="10dp"-->
+                    <!--                     android:layout_marginHorizontal="20dp"-->
+                    <!--                     android:text="@string/msg_i_agree_with_th"-->
+                    <!--                     android:layout_width="match_parent"-->
+                    <!--                     android:layout_height="wrap_content"/>-->
+                    <TextView
+
+                        android:id="@+id/txtForgotPassword"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="10dp"
+                        android:textSize="15sp"
+                        android:textColor="@color/black"
+                        android:gravity="right"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/txt_forgotPassword"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <android.widget.Button
+                        android:background="@drawable/bg_login_btn"
+                        android:id="@+id/btnLogin"
+                        android:text="@string/txt_login"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="30dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="200dp"
+                        android:layout_height="40dp"/>
+
+                </LinearLayout>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+        <android.widget.Button
+            android:textColor="@color/white"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/cardView"
+            android:id="@+id/btnNewAccount"
+            android:text="@string/txt_create_new_account"
+            android:background="@drawable/bg_sign_up_btn"
+            android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="30dp"
+            android:layout_width="200dp"
+            android:layout_height="50dp"/>
 
 
+
+
+
+        <ImageView
+            android:layout_above="@id/cardView"
+            android:id="@+id/imgLove"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/login_top"
+            android:layout_width="150dp"
+            android:layout_height="150dp"/>
 
 
 

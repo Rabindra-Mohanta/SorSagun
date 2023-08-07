@@ -93,7 +93,7 @@ class SingUpActivity : BaseActivity() {
                     isValid = false
                     binding.edtNewPass.setError(resources.getString(R.string.txt_enterValid_password))
                 }
-                if (!TextUtils.isEmpty(binding.edtPass.error)) {
+                if (!TextUtils.isEmpty(binding.edtNewPass.error)) {
                     isValid = false
                     binding.edtNewPass.setError(resources.getString(R.string.txt_enterValid_password))
                     Toast.makeText(this@SingUpActivity,resources.getString(R.string.txt_enterValid_password),Toast.LENGTH_SHORT).show()
@@ -130,7 +130,7 @@ class SingUpActivity : BaseActivity() {
                     ).show();
                 }
 
-                if (isValid && !TextUtils.isEmpty(binding.edtPass.error.toString())) {
+                if (isValid && !TextUtils.isEmpty(binding.edtNewPass.error.toString())) {
                     if (isConnectionAvailable()) {
                         binding.btnCreate.isEnabled = false;
                         binding.progressbar.visibility = View.VISIBLE;
@@ -217,7 +217,7 @@ class SingUpActivity : BaseActivity() {
         var isNumber = false;
           if(password.length<6)
           {
-              binding.edtPass.setError("Enter minimum 6 digit password format")
+              binding.edtNewPass.setError("Enter minimum 6 digit password format")
 
 
           }
@@ -246,12 +246,12 @@ class SingUpActivity : BaseActivity() {
              }
              if(isSpecialChar && isUpper && isLower && isNumber)
              {
-                 binding.edtPass.setError("")
+                 binding.edtNewPass.setError("")
              }
              else
              {
 
-                 binding.edtPass.setError("plz Enter valid password format")
+                 binding.edtNewPass.setError("plz Enter valid password format")
              }
         }
 
