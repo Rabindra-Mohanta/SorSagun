@@ -6,7 +6,7 @@
         android:width="2dp"
         />
     <solid
-        android:color="@color/purple_700" />
+        android:color="@color/transparent" />
     <corners
-        android:radius="10dp" />
+        android:radius="20dp" />
 </shape>

@@ -34,7 +34,7 @@ class MyFcmService: FirebaseMessagingService() {
             notification.setContentTitle(message.data["title"])
           notification.setContentText(message.data["body"])
 
-        notification.setSmallIcon(R.drawable.logo)
+        notification.setSmallIcon(R.drawable.login_top)
         notification .setAutoCancel(true)
         notification.setPriority(NotificationCompat.PRIORITY_MAX)
         notification.setContentIntent(intent1)

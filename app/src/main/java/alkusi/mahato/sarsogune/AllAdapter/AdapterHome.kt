@@ -13,6 +13,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.lifecycle.VIEW_MODEL_STORE_OWNER_KEY
 import androidx.recyclerview.widget.RecyclerView
+import com.adwardstark.mtextdrawable.MaterialTextDrawable
 import com.bumptech.glide.Glide
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.QueryDocumentSnapshot
@@ -30,9 +31,19 @@ class AdapterHome(var context: Context,var dataList:ArrayList<DocumentSnapshot>,
         var item = dataList.get(a)
         var data = item.data
 
+
         if(data!=null)
         {
             var profileImage:String? = data.get(context.resources.getString(R.string.fir_profileImage)) as String?;
+            var name = data.get(context.getString(R.string.fir_CandidateName)) as String?
+            var gusti = data.get(context.getString(R.string.fir_Gusti)) as String?
+                var address = data.get(context.getString(R.string.fir_Address)) as String?
+            var aboutUser = data.get(context.getString(R.string.fir_aboutMe)) as String?
+            holder.txtUserName.setText(name+","+gusti+","+address+"\n"+"About- "+aboutUser)
+            if(TextUtils.isEmpty(name))
+            {
+                name = "."
+            }
             if(!TextUtils.isEmpty(profileImage))
             {
                 storageReference = FirebaseStorage.getInstance().getReference("images/"+profileImage);
@@ -40,7 +51,10 @@ class AdapterHome(var context: Context,var dataList:ArrayList<DocumentSnapshot>,
               {
                   storageReference!!.downloadUrl.addOnSuccessListener {
                       var url = it.toString();
-                      Glide.with(context).load(url).centerCrop().into(holder.imageView)
+                      Glide.with(context).load(url).placeholder(context.resources.getDrawable(R.drawable.default_user)).centerCrop().into(holder.imageView)
+                      holder.imgUserCircle.visibility = View.VISIBLE
+                      holder.userImg.visibility = View.GONE
+                      Glide.with(context).load(url).placeholder(context.resources.getDrawable(R.drawable.default_user)).centerCrop().into(holder.imgUserCircle)
 
                   }
               }
@@ -48,11 +62,13 @@ class AdapterHome(var context: Context,var dataList:ArrayList<DocumentSnapshot>,
                 }
             else
             {
-                Glide.with(context).load("").centerCrop().into(holder.imageView)
+                holder.imgUserCircle.visibility = View.GONE
+                holder.userImg.visibility = View.VISIBLE
+                MaterialTextDrawable.with(context).shape(MaterialTextDrawable.MaterialShape.CIRCLE).text(name!!.get(0).toString()).into(holder.userImg)
+                Glide.with(context).load(context.resources.getDrawable(R.drawable.default_user)).centerCrop().into(holder.imageView)
             }
 
-            holder.txtName.setText(data.get(context.getString(R.string.fir_CandidateName)) as String? )
-            holder.btnGusti.setText(data.get(context.getString(R.string.fir_Gusti)) as String?)
+
             }
 
 
@@ -93,8 +109,9 @@ class AdapterHome(var context: Context,var dataList:ArrayList<DocumentSnapshot>,
     inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView)
     {
     val imageView = itemView.findViewById<ImageView>(R.id.imageView)
-    val txtName = itemView.findViewById<TextView>(R.id.txtName)
-    val btnGusti = itemView.findViewById<Button>(R.id.btnGusti)
+    val imgUserCircle = itemView.findViewById<CircleImageView>(R.id.imgUserCircle)
+        val userImg = itemView.findViewById<ImageView>(R.id.userImg)
+        val txtUserName = itemView.findViewById<TextView>(R.id.txtUserName)
 
     }
 

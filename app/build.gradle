@@ -79,5 +79,6 @@ dependencies {
     implementation 'dev.shreyaspatil.MaterialDialog:MaterialDialog:2.2.3'
     // Lottie Animation Library
     implementation 'com.airbnb.android:lottie:4.2.2'
-
+//textdrawable
+    implementation 'com.github.adwardstark:materialtextdrawable-for-android:1.0.0'
 }

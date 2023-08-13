@@ -1,13 +1,12 @@
 package alkusi.mahato.sarsogune.AllActivity
 
-import alkusi.mahato.sarsogune.R
+
 import alkusi.mahato.sarsogune.databinding.ActivitySplashBinding
+import android.R
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
-import android.view.animation.Animation
-import android.view.animation.LinearInterpolator
-import android.view.animation.RotateAnimation
 import android.widget.RelativeLayout
 
 
@@ -18,7 +17,11 @@ class SplashActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        relativeLayout = findViewById(R.id.topLl)
+
+        val uri: Uri = Uri.parse("android.resource://" + packageName + "/" + alkusi.mahato.sarsogune.R.raw.intro_video)
+
+        binding.videoView.setVideoURI(uri)
+        binding.videoView.start()
         if(intent!=null && intent.extras!=null)
         {
             if(intent.hasExtra("email"))
@@ -30,6 +33,7 @@ class SplashActivity : BaseActivity() {
             }
             else
             {
+                binding.videoView.stopPlayback()
                 val intent = Intent(this@SplashActivity,LoginActivity::class.java)
                 startActivity(intent)
                 finish();
@@ -46,6 +50,7 @@ class SplashActivity : BaseActivity() {
         val handler = Handler().postDelayed(object :Runnable
         {
             override fun run() {
+                binding.videoView.stopPlayback()
             val intent = Intent(this@SplashActivity,LoginActivity::class.java)
                 startActivity(intent)
                 finish();

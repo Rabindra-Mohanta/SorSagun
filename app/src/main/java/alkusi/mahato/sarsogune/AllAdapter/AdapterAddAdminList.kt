@@ -40,7 +40,7 @@ class AdapterAddAdminList(var context: Context, var userList:ArrayList<QueryDocu
             if(storageReference!=null)
             {
                 storageReference!!.downloadUrl.addOnSuccessListener {
-                    Glide.with(context).load(it).placeholder(R.drawable.splash).into(holder.circularImageView);
+                    Glide.with(context).load(it).placeholder(R.drawable.login_top).into(holder.circularImageView);
                 }
 
             }

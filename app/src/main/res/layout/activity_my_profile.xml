@@ -49,7 +49,7 @@
                     android:layout_marginTop="18dp"
                     android:layout_marginEnd="18dp"
                     android:layout_marginBottom="18dp"
-                    android:src="@drawable/icon_image" />
+                    android:src="@drawable/icon_edit" />
             </RelativeLayout>
             <LinearLayout
                 android:gravity="center_horizontal"

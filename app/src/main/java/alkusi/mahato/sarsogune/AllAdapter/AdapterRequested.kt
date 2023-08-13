@@ -41,7 +41,7 @@ class AdapterRequested(var context:Context,var requestedList:ArrayList<DocumentS
                   if(storageReference!=null)
                   {
                       storageReference!!.downloadUrl.addOnSuccessListener {
-                          Glide.with(context).load(it.toString()).placeholder(R.drawable.splash).into(holder.imgProfile)
+                          Glide.with(context).load(it.toString()).placeholder(R.drawable.login_top).into(holder.imgProfile)
                       }
                   }
               }

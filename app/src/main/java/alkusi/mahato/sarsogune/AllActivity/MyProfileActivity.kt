@@ -310,7 +310,7 @@ private fun init2()
                              storageReference =  FirebaseStorage.getInstance().getReference("images/"+profileImage);
                              storageReference.downloadUrl.addOnSuccessListener {uri->
                                  profileImageUrlLinke = uri.toString();
-                                 Glide.with(this@MyProfileActivity).asBitmap().load(uri.toString()).placeholder(R.drawable.splash).centerCrop().into(binding.imgProfile)
+                                 Glide.with(this@MyProfileActivity).asBitmap().load(uri.toString()).placeholder(R.drawable.login_top).centerCrop().into(binding.imgProfile)
                              }
                          }
                             if(result.get(resources.getString(R.string.fir_candidateImages)) !=null)

@@ -14,7 +14,7 @@
         android:id="@+id/imgProfile"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
-        android:src="@drawable/splash"
+        android:src="@drawable/login_top"
         android:layout_width="40dp"
         android:layout_height="40dp"/>
     <TextView

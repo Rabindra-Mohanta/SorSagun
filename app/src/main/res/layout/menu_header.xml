@@ -5,7 +5,7 @@
     android:layout_height="200dp">
   <de.hdodenhof.circleimageview.CircleImageView
       android:id="@+id/circularImageView"
-      android:src="@drawable/logo"
+      android:src="@drawable/login_top"
       android:layout_centerHorizontal="true"
       android:layout_marginTop="40dp"
       android:layout_width="100dp"

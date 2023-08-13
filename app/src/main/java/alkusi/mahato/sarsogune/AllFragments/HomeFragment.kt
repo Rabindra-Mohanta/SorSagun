@@ -67,40 +67,102 @@ class HomeFragment : BaseFragment(),AdapterHome.OnItemClick,AdapterImageList.OnC
     var allImages = ArrayList<String>();
     var bottomSheetDialog:BottomSheetDialog? = null;
     val dataList:ArrayList<DocumentSnapshot> = ArrayList<DocumentSnapshot>()
-    var lastVisible:DocumentSnapshot?=null;
+    var lastVisible:Long?=null;
     var startPagination = 1;
     var previousScrollPosition = 0;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
   setHasOptionsMenu(true)
     }
-    private fun getDataFromFirebase()
+    private fun getDataWithPagination()
     {
-        Log.e(TAG,"rabindra->"+true)
+        if(!isConnectionAvailable())
+        {
+            binding.swipeRefreshLayout.isRefreshing = false;
+            showNoNetworkMsg()
+            return
+        }
         binding.progressbar.visibility = View.VISIBLE;
-        db.collection(resources.getString(R.string.fir_Users)).orderBy("TimeStamp").get().addOnCompleteListener(object :OnCompleteListener<QuerySnapshot>
+         var db1:FirebaseFirestore =    FirebaseFirestore.getInstance();
+        db1.collection(resources.getString(R.string.fir_Users)).orderBy("TimeStamp",Query.Direction.DESCENDING).startAfter(lastVisible).limit(10).get().addOnCompleteListener(object :OnCompleteListener<QuerySnapshot>
         {
             override fun onComplete(querySnapshot: Task<QuerySnapshot>) {
 
+                val result =  querySnapshot.result
+
+                if(result!=null && result.documents.size>0)
+                {
+lastVisible = result.documents.get(result.documents.size-1).getLong("TimeStamp")
+                    val documentList = ArrayList<DocumentSnapshot>();
+                    for(i in 0 ..  result.documents.size-1)
+                    {
+
+
+
+
+
+                        var data = result.documents.get(i)
+                        if(data.get(resources.getString(R.string.fir_CandidateName)) != null )
+                        {
+
+                            documentList.add(result.documents.get(i))
+                        }
+
+
+
+
+                    }
+                    adapterHome!!.addData(documentList)
+                    binding.progressbar.visibility = View.GONE;
+                    binding.swipeRefreshLayout.isRefreshing = false;
+
+                }
+                else
+                {
+                    binding.progressbar.visibility = View.GONE;
+                }
+
+
+            }
+
+        })
+            .addOnFailureListener(object :OnFailureListener
+            {
+                override fun onFailure(p0: Exception) {
+                    Toast.makeText(requireContext(),resources.getString(R.string.msg_something_went),Toast.LENGTH_SHORT).show()
+                    binding.progressbar.visibility = View.GONE;
+                    binding.swipeRefreshLayout.isRefreshing = false;
+                }
+            })
+    }
+    private fun getDataFromFirebase()
+    {
+        if(!isConnectionAvailable())
+        { binding.swipeRefreshLayout.isRefreshing = false;
+            showNoNetworkMsg()
+            return
+        }
+        binding.progressbar.visibility = View.VISIBLE;
+        db.collection(resources.getString(R.string.fir_Users)).orderBy("TimeStamp", Query.Direction.DESCENDING).limit(10).get().addOnCompleteListener(object :OnCompleteListener<QuerySnapshot>
+        {
+            override fun onComplete(querySnapshot: Task<QuerySnapshot>) {
                    val result =  querySnapshot.result
                 dataList.clear()
                 adapterHome!!.dataList.clear()
                  if(result!=null && result.documents.size>0)
                  {
-
+                    lastVisible = result.documents.get(result.documents.size-1).getLong("TimeStamp")
                      val documentList = ArrayList<DocumentSnapshot>();
-                     for(i in result.documents.size-1 downTo 0)
+                     for(i in 0 ..result.documents.size-1)
                      {
+                         var data = result.documents.get(i)
+                         if(data.get(resources.getString(R.string.fir_CandidateName)) != null )
+                         {
+
+                             documentList.add(result.documents.get(i))
+                         }
 
 
-                             var data = result.documents.get(i)
-
-
-                             if(data.get(resources.getString(R.string.fir_CandidateName)) != null )
-                             {
-
-                                 documentList.add(result.documents.get(i))
-                             }
 
                      }
                      adapterHome!!.addData(documentList)
@@ -150,40 +212,40 @@ class HomeFragment : BaseFragment(),AdapterHome.OnItemClick,AdapterImageList.OnC
     }
 private fun init()
 {
-//    binding.recyclerView.addOnScrollListener(object :RecyclerView.OnScrollListener()
-//    {
-//
-//        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-//            super.onScrollStateChanged(recyclerView, newState)
-//
-//        }
-//
-//        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-//            super.onScrolled(recyclerView, dx, dy)
-//            val totalItem = layoutManager!!.itemCount;
-//            val visibleItem = layoutManager!!.childCount
-//            val firstVisibleItem = layoutManager!!.findFirstVisibleItemPosition()
-//            val lastVisible = layoutManager!!.findLastVisibleItemPosition()
-//
-//
-//
-//            if((firstVisibleItem+visibleItem)>=totalItem && dy > 0 && previousScrollPosition<=binding.recyclerView.computeVerticalScrollOffset())
-//            {
-//                if(startPagination*10 >= totalItem )
-//                {
-//                    if(!binding.progressbar.isVisible)
-//                    {
-//                        startPagination++;
-//                        getDataFromFirebase();
-//                    }
-//                }
-//
-//
-//            }
-//            previousScrollPosition = recyclerView.computeVerticalScrollOffset();
-//        }
-//
-//    })
+    binding.recyclerView.addOnScrollListener(object :RecyclerView.OnScrollListener()
+    {
+
+        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+            super.onScrollStateChanged(recyclerView, newState)
+
+        }
+
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+            val totalItem = layoutManager!!.itemCount;
+            val visibleItem = layoutManager!!.childCount
+            val firstVisibleItem = layoutManager!!.findFirstVisibleItemPosition()
+            val lastVisible = layoutManager!!.findLastVisibleItemPosition()
+
+
+
+            if((firstVisibleItem+visibleItem)>=totalItem && firstVisibleItem > 0 )
+            {
+
+                    if(!binding.progressbar.isVisible)
+                    {
+                        Log.e(TAG,"pageNo->"+startPagination);
+                        startPagination++;
+                        getDataWithPagination();
+                    }
+
+
+
+            }
+            previousScrollPosition = recyclerView.computeVerticalScrollOffset();
+        }
+
+    })
 
     db = FirebaseFirestore.getInstance();
     getDataFromFirebase();
@@ -195,6 +257,7 @@ private fun init()
         binding.recyclerView.setHasFixedSize(true);
         adapterHome = AdapterHome(requireContext(),dataList,storageReference,this)
         layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false);
+
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = adapterHome;
         adapterHome!!.notifyDataSetChanged();
