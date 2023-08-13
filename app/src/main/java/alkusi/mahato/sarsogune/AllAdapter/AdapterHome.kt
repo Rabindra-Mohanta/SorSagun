@@ -39,7 +39,8 @@ class AdapterHome(var context: Context,var dataList:ArrayList<DocumentSnapshot>,
             var gusti = data.get(context.getString(R.string.fir_Gusti)) as String?
                 var address = data.get(context.getString(R.string.fir_Address)) as String?
             var aboutUser = data.get(context.getString(R.string.fir_aboutMe)) as String?
-            holder.txtUserName.setText(name+","+gusti+","+address+"\n"+"About- "+aboutUser)
+            holder.txtUserName.setText(name+","+address+"\n"+"About- "+aboutUser)
+            holder.btnGusti.setText(gusti)
             if(TextUtils.isEmpty(name))
             {
                 name = "."
@@ -51,10 +52,10 @@ class AdapterHome(var context: Context,var dataList:ArrayList<DocumentSnapshot>,
               {
                   storageReference!!.downloadUrl.addOnSuccessListener {
                       var url = it.toString();
-                      Glide.with(context).load(url).placeholder(context.resources.getDrawable(R.drawable.default_user)).centerCrop().into(holder.imageView)
+                      Glide.with(context).load(url).placeholder(context.resources.getDrawable(R.drawable.login_top)).centerCrop().into(holder.imageView)
                       holder.imgUserCircle.visibility = View.VISIBLE
                       holder.userImg.visibility = View.GONE
-                      Glide.with(context).load(url).placeholder(context.resources.getDrawable(R.drawable.default_user)).centerCrop().into(holder.imgUserCircle)
+                      Glide.with(context).load(url).placeholder(context.resources.getDrawable(R.drawable.login_top)).centerCrop().into(holder.imgUserCircle)
 
                   }
               }
@@ -65,7 +66,7 @@ class AdapterHome(var context: Context,var dataList:ArrayList<DocumentSnapshot>,
                 holder.imgUserCircle.visibility = View.GONE
                 holder.userImg.visibility = View.VISIBLE
                 MaterialTextDrawable.with(context).shape(MaterialTextDrawable.MaterialShape.CIRCLE).text(name!!.get(0).toString()).into(holder.userImg)
-                Glide.with(context).load(context.resources.getDrawable(R.drawable.default_user)).centerCrop().into(holder.imageView)
+                Glide.with(context).load(context.resources.getDrawable(R.drawable.login_top)).centerCrop().into(holder.imageView)
             }
 
 
@@ -112,6 +113,7 @@ class AdapterHome(var context: Context,var dataList:ArrayList<DocumentSnapshot>,
     val imgUserCircle = itemView.findViewById<CircleImageView>(R.id.imgUserCircle)
         val userImg = itemView.findViewById<ImageView>(R.id.userImg)
         val txtUserName = itemView.findViewById<TextView>(R.id.txtUserName)
+        val btnGusti = itemView.findViewById<Button>(R.id.btnGusti)
 
     }
 

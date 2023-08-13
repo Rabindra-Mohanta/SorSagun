@@ -3,9 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 <RelativeLayout
-    android:layout_margin="10dp"
+    android:layout_marginBottom="10dp"
     android:layout_width="match_parent"
-    android:layout_height="350dp">
+    android:layout_height="380dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
 
@@ -23,6 +23,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0">
                   <RelativeLayout
+                      android:layout_marginHorizontal="10dp"
                       android:id="@+id/rllImage"
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content">
@@ -63,19 +64,30 @@
 
 
                     <RelativeLayout
-                        android:background="@drawable/bg_item_main_image"
-                        android:layout_marginTop="5dp"
+
                         android:layout_below="@+id/rllImage"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                         <ImageView
                             android:padding="5dp"
                             android:id="@+id/imageView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center_horizontal" />
                     </RelativeLayout>
 
+                <android.widget.Button
+                    android:paddingHorizontal="5dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_alignParentBottom="true"
+                    android:id="@+id/btnGusti"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:background="@drawable/btn_bg_gusti"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+              />
 
 
             </RelativeLayout>
