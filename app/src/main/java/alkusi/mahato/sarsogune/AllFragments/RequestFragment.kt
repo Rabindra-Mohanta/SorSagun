@@ -49,6 +49,8 @@ var adapter:AdapterRequested?=null;
              override fun onRefresh() {
 
                  previousScrollPosition = 0;
+                 adapter!!.requestedList.clear()
+                 adapter!!.notifyDataSetChanged()
                  lastVisible = null;
                  getAllRequest()
 

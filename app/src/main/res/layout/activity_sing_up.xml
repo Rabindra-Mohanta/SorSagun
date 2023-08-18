@@ -47,6 +47,7 @@
                           android:layout_height="wrap_content"/>
 
                       <EditText
+                          android:paddingLeft="10dp"
                           android:background="@drawable/bg_edit_txt"
                           android:id="@+id/edtName"
                           android:layout_width="match_parent"
@@ -92,6 +93,7 @@
 
 
                       <EditText
+                          android:paddingLeft="10dp"
                           android:background="@drawable/bg_edit_txt"
                           android:layout_marginTop="10dp"
                           android:id="@+id/edtEmail"
@@ -122,6 +124,7 @@
                           android:layout_height="wrap_content"/>
 
                       <EditText
+                          android:paddingLeft="10dp"
                           android:background="@drawable/bg_edit_txt"
                           android:layout_marginHorizontal="20dp"
                           android:layout_marginTop="10dp"
@@ -142,6 +145,7 @@
                           android:layout_width="match_parent"
                           android:layout_height="wrap_content"/>
                       <EditText
+                          android:paddingLeft="10dp"
                           android:background="@drawable/bg_edit_txt"
                           android:layout_marginTop="10dp"
                           android:layout_marginHorizontal="20dp"

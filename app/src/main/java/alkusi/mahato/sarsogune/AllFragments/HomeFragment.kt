@@ -204,6 +204,8 @@ lastVisible = result.documents.get(result.documents.size-1).getLong("TimeStamp")
             override fun onRefresh() {
                 startPagination =1;
                lastVisible = null
+                adapterHome!!.dataList.clear()
+                adapterHome!!.notifyDataSetChanged()
                 dataList.clear()
                 getDataFromFirebase();
             }

@@ -52,7 +52,7 @@ class AdapterHome(var context: Context,var dataList:ArrayList<DocumentSnapshot>,
               {
                   storageReference!!.downloadUrl.addOnSuccessListener {
                       var url = it.toString();
-                      Glide.with(context).load(url).placeholder(context.resources.getDrawable(R.drawable.login_top)).centerCrop().into(holder.imageView)
+                      Glide.with(context).load(url).centerCrop().into(holder.imageView)
                       holder.imgUserCircle.visibility = View.VISIBLE
                       holder.userImg.visibility = View.GONE
                       Glide.with(context).load(url).placeholder(context.resources.getDrawable(R.drawable.login_top)).centerCrop().into(holder.imgUserCircle)
